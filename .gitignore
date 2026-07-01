@@ -30,3 +30,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+FRONTEND_ARCHITECTURE.md 
+CLEANUP_REPORT.md 
