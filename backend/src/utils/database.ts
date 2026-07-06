@@ -9,9 +9,11 @@ export type DatabaseHealth = {
 export const verifyDatabaseConnection = async (): Promise<DatabaseHealth> => {
   try {
     const prisma = getPrismaClient();
-    await prisma.$queryRaw`SELECT 1`;
+    await prisma.$queryRawUnsafe("SELECT 1");
     return { connected: true };
   } catch (error) {
+    console.error("Database Health Check Error:", error);
+
     throw new AppError(
       `${APP_MESSAGES.SOMETHING_WENT_WRONG}: failed to connect to PostgreSQL`,
       HTTP_STATUS.INTERNAL_SERVER_ERROR,
